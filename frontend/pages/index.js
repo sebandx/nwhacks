@@ -9,7 +9,7 @@ import ResponsiveAppBar from '../src/ResponsiveAppBar';
 
 export default function Index() {
   return (
-    <Container maxWidth="sm">
+    <Container>
       <Box sx={{ my: 4 }}>
         <ResponsiveAppBar />
         <Typography variant="h4" component="h1" gutterBottom>
