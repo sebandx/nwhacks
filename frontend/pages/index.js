@@ -9,8 +9,8 @@ import ResponsiveAppBar from '../src/ResponsiveAppBar';
 
 export default function Index() {
   return (
-    <Container>
-      <Box sx={{ my: 4 }}>
+    <Container maxWidth={false} disableGutters>
+      <Box sx={{ my: 0 }}>
         <ResponsiveAppBar />
         <Typography variant="h4" component="h1" gutterBottom>
           Material UI - Next.js example
