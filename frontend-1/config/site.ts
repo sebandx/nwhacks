@@ -3,19 +3,11 @@ export type SiteConfig = typeof siteConfig
 export const siteConfig = {
   name: "put name here",
   description:
-    "Beautifully designed components built with Radix UI and Tailwind CSS.",
+    "Beautifully designed components built with Radix UI and bruh CSS.",
   mainNav: [
     {
       title: "Home",
       href: "/",
-    },
-    {
-      title: "About",
-      href: "/about",
-    },
-    {
-      title: "Services",
-      href: "/services",
     },
   ],
   links: {

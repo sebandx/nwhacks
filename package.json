@@ -1,5 +1,6 @@
 {
   "name": "mediapipe-web",
+  "start":"nodemon index.js",
   "type": "module",
   "version": "1.0.0",
   "description": "",
@@ -10,6 +11,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@mediapipe/tasks-vision": "^0.10.9"
+    "@mediapipe/tasks-vision": "^0.10.9",
+    "mongoose": "^8.1.0"
   }
 }
