@@ -1,9 +1,17 @@
-import Image from "next/image";
+import React from 'react';
 
-export default function Home() {
+const HomePage = () => {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      Hello World
-    </main>
+    <div>
+      <header>
+        <h1>My Simple React Home Page</h1>
+      </header>
+      <main>
+        <p>Welcome to my simple React home page! This is a basic example of a React project.</p>
+        <img src="https://via.placeholder.com/300" alt="Placeholder" />
+      </main>
+    </div>
   );
 }
+
+export default HomePage;
