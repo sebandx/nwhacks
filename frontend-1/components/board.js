@@ -27,7 +27,6 @@ export default function Board() {
 
   return (
     <div className="board">
-      <h1 className='leaderboard'>Leaderboard</h1>
       <button style={{ marginTop: '2.5em', fontWeight: '500' }} className='mt-10 text-3xl font-extrabold leading-tight' disabled data-id=''>Leaderboard</button>
 
       <Profiles Leaderboard={[...data].reverse()}></Profiles>
