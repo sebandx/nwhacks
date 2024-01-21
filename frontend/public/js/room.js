@@ -117,17 +117,23 @@ predictWebcam = function () {
       }
       canvasCtx.restore();
       
-      if (startedRep === 1 && result.landmarks[0] && result.landmarks[0].length >= 16) {
-        const shoulder = [result.landmarks[0][11].x, result.landmarks[0][11].y];
-        const elbow = [result.landmarks[0][13].x, result.landmarks[0][13].y];
-        const wrist = [result.landmarks[0][15].x, result.landmarks[0][15].y];
+      if (startedRep === 1 && result.landmarks[0] && result.landmarks[0].length >= 32) {
+        const shoulderRight = [result.landmarks[0][11].x, result.landmarks[0][11].y];
+        const elbowRight = [result.landmarks[0][13].x, result.landmarks[0][13].y];
+        const wristRight = [result.landmarks[0][15].x, result.landmarks[0][15].y];
         
-        let angle = calculateAngle(shoulder, elbow, wrist);
+        let angleRight = calculateAngle(shoulderRight, elbowRight, wristRight);
 
-        if (angle > 160) {
+        const shoulderLeft = [result.landmarks[0][12].x, result.landmarks[0][12].y];
+        const elbowLeft = [result.landmarks[0][14].x, result.landmarks[0][14].y];
+        const wristLeft = [result.landmarks[0][16].x, result.landmarks[0][16].y];
+        
+        let angleLeft = calculateAngle(shoulderLeft, elbowLeft, wristLeft);
+
+        if (angleRight < 110 && angleLeft < 110 ) {
           stage = "down";
         } 
-        if (angle < 30 && stage == "down") {
+        if (angleRight > 160 && angleLeft > 160 && stage == "down") {
           stage = "up";
           counter += 1;
           console.log(counter);
@@ -597,7 +603,6 @@ videoButt.addEventListener('click', () => {
 myvideo.onplay = () => {
     // just turn this into the video is one variable 
     if (videoAllowed === 1 && poseLandmarker) {
-        console.log("inside if");
       window.requestAnimationFrame(predictWebcam);
     }
     
@@ -685,7 +690,6 @@ startRepsButt.addEventListener('click', async () => { // Add async here
             console.error("Failed to send request", error);
         }
 
-        // Emitting the 'stopReps' event to the server
         socket.emit('stopReps');
     } else {
         startedRep = 1;
