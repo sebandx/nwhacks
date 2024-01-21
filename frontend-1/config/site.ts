@@ -30,5 +30,5 @@ export const siteConfig = {
   },
   backend: "http://localhost:8080",
   backend1: "https://nwhacks-seven.vercel.app",
-  app: "https://c08d-142-103-203-209.ngrok-free.app/"
+  app: "http://localhost:3000"
 }
