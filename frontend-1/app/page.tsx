@@ -31,7 +31,7 @@ export default function IndexPage() {
       </div>
       <div className="flex gap-4">
         <Link
-          href={siteConfig.links.docs}
+          href="https://github.com"
           target="_blank"
           rel="noreferrer"
           className={buttonVariants()}
@@ -41,7 +41,7 @@ export default function IndexPage() {
         <Link
           target="_blank"
           rel="noreferrer"
-          href={siteConfig.links.github}
+          href="https://github.com"
           className={buttonVariants({ variant: "outline" })}
         >
           GitHub
