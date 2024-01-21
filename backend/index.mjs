@@ -1,35 +1,18 @@
-//const { MongoClient } = require('mongodb');
-// or as an es module:
-import { MongoClient } from 'mongodb'
+import express from 'express';
+import { MongoClient } from 'mongodb';
 
-// Connection URL
-const dburi = 'mongodb+srv://ewanbuchanan8:Mycomputer437!@cluster0.csowqot.mongodb.net/';
-const dbName = 'nwhack2024';
-const client = new MongoClient(dburi)
+const url = process.env['URL'];
+const dbName = process.env['DB_NAME'];
 
-// Database Name
+const client = new MongoClient(url);
+await client.connect();
+const db = client.db(dbName);
+const collection = db.collection('documents');
 
+const app = express();
 
-async function main() {
-  // Use connect method to connect to the server
-  await client.connect();
-  console.log('Connected successfully to server');
-  const db = client.db(dbName);
-  const collection = db.collection('documents');
+app.get('/', (req, res) => {
+    res.send('Hello World');
+});
 
-  // the following code examples can be pasted here...
-
-  return 'done.';
-}
-
-main()
-  .then(console.log)
-  .catch(console.error)
-  .finally(() => client.close());
-
-
-
-
-
-
-
+app.listen(8080);
