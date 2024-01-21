@@ -4,6 +4,7 @@ const socket = io();
 const myvideo = document.querySelector("#vd1");
 const roomid = params.get("room");
 let username;
+let counter = 0;
 const chatRoom = document.querySelector('.chat-cont');
 const sendButton = document.querySelector('.chat-send');
 const messageField = document.querySelector('.chat-input');
@@ -14,13 +15,12 @@ const nameField = document.querySelector('#name-field');
 const videoButt = document.querySelector('.novideo');
 const audioButt = document.querySelector('.audio');
 const cutCall = document.querySelector('.cutcall');
-const screenShareButt = document.querySelector('.screenshare');
-const whiteboardButt = document.querySelector('.board-icon')
-
+const startRepsButt = document.querySelector('.startrep');
 //whiteboard js start
 
 let videoAllowed = 1;
 let audioAllowed = 1;
+let startedRep = 0;
 
 let micInfo = {};
 let videoInfo = {};
@@ -68,7 +68,6 @@ document.addEventListener('DOMContentLoaded', (event) => {
     }, false );
 
 const createPoseLandmarker = async () => {
-    console.log("pose landmarker called");
   const vision = await FilesetResolver.forVisionTasks(
     "https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.0/wasm"
   );
@@ -80,11 +79,8 @@ const createPoseLandmarker = async () => {
     numPoses: 2
 
   });
-  console.log("hi");
-  console.log(poseLandmarker);
 };
 
-console.log("pose landmarker #2");
 createPoseLandmarker();
 
 // function
@@ -99,9 +95,7 @@ const drawingUtils = new DrawingUtils(canvasCtx);
 // function 3
 let lastVideoTime = -1;
 let stage = null;
-  let counter = 0;
 predictWebcam = function () {
-    console.log("reached");
   canvasElement.style.height = videoHeight;
   myvideo.style.height = videoHeight;
   canvasElement.style.width = videoWidth;
@@ -122,7 +116,7 @@ predictWebcam = function () {
       }
       canvasCtx.restore();
       
-      if (result.landmarks[0] && result.landmarks[0].length >= 16) {
+      if (startedRep === 1 && result.landmarks[0] && result.landmarks[0].length >= 16) {
         const shoulder = [result.landmarks[0][11].x, result.landmarks[0][11].y];
         const elbow = [result.landmarks[0][13].x, result.landmarks[0][13].y];
         const wrist = [result.landmarks[0][15].x, result.landmarks[0][15].y];
@@ -600,12 +594,8 @@ videoButt.addEventListener('click', () => {
 })
 
 myvideo.onplay = () => {
-    console.log("before if");
-    console.log(videoAllowed);
-    console.log(poseLandmarker);
     // just turn this into the video is one variable 
     if (videoAllowed === 1 && poseLandmarker) {
-        console.log("inside if");
       window.requestAnimationFrame(predictWebcam);
     }
     
@@ -652,6 +642,63 @@ audioButt.addEventListener('click', () => {
         socket.emit('action', 'unmute');
     }
 })
+
+socket.on('startReps', () => {
+    startedRep = 1;
+    startRepsButt.innerHTML = `<i class="fas fa-pause"></i>`;
+    startRepsButt.style.backgroundColor = "#b12c2c";
+});
+
+socket.on('stopReps', () => {
+    startedRep = 0;
+    startRepsButt.innerHTML = `<i class="fas fa-play"></i>`;
+    startRepsButt.style.backgroundColor = "#4ECCA3";
+});
+
+
+startRepsButt.addEventListener('click', async () => { // Add async here
+    if (startedRep) {
+        startedRep = 0;
+        startRepsButt.innerHTML = `<i class="fas fa-play"></i>`;
+        startRepsButt.style.backgroundColor = "#4ECCA3";
+        const data = {
+            username: username,
+            numReps: counter
+        };
+        
+
+        try {
+            const response = await fetch('http://localhost:5555/User/', { // Use await here
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data),
+            });
+
+            if (!response.ok) {
+                // Handle response error
+                console.error("Failed to post data", response.status);
+            } else {
+                const responseData = await response.json();
+                console.log("Data posted successfully", responseData);
+            }
+        } catch (error) {
+            console.error("Failed to send request", error);
+        }
+
+        // Emitting the 'stopReps' event to the server
+        socket.emit('stopReps');
+    } else {
+        startedRep = 1;
+        startRepsButt.innerHTML = `<i class="fas fa-pause"></i>`;
+        startRepsButt.style.backgroundColor = "#b12c2c";
+
+        // Emitting the 'startReps' event to the server
+        socket.emit('startReps');
+    }
+});
+
 
 socket.on('action', (msg, sid) => {
     if (msg == 'mute') {
