@@ -530,13 +530,20 @@ navbar .logo {
   bottom: 10px;
 }
 .container-room .left-cont .footer {
+  
+  display: flex;
+    align-items: center; 
+    justify-content: center; 
+    padding: 10px; 
+
   position: relative;
 }
 .container-room .left-cont .footer .utils {
+  position: relative;
   text-align: center;
   margin: 0 auto;
   display: flex;
-  margin-top: 50px;
+  /* margin-top: 50px; */
   width: 260px;
   background-color: #ffffff;
   border-radius: 10px;
@@ -605,8 +612,8 @@ navbar .logo {
 }
 
 .container-room .left-cont .footer .copycode-cont {
-  position: absolute;
-  top: 10px;
+  position: relative;
+  /* top: 10px; */
   left: 0;
   display: flex;
 }
@@ -812,8 +819,18 @@ navbar .logo {
 }
 
 
+
 #counterDisplay {
-  font-size: 24px;
-  color: blue;
-  /* Add more styles as needed */
+  flex-grow: 0;
+    flex-shrink: 0; 
+    margin: 0 10px; 
+
+  background-color: #f2f2f2; 
+  border: 2px solid #ddd; 
+  border-radius: 15px; 
+  padding: 10px 20px; 
+  display: inline-block;
+  margin: 10px; 
+  font-size: 24px; 
+  text-align: center; 
 }
