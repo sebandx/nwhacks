@@ -9,11 +9,11 @@ const app = express();
 app.use(express.json()); 
 
 const corsOptions = {
-    origin: '*', // or use "*" to allow all origins
-    optionsSuccessStatus: 200
+    origin: '*', 
+    optionsSuccessStatus: 200 
 };
 
-app.use(cors(corsOptions));
+app.use(cors(corsOptions)); 
 
 app.get('/', (request, response) => {
     console.log(request);
