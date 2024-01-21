@@ -1,9 +1,8 @@
 export type SiteConfig = typeof siteConfig
 
 export const siteConfig = {
-  name: "put name here",
-  description:
-    "Beautifully designed components built with Radix UI and bruh CSS.",
+  name: "WiiGym",
+  description: "WiiGym offers an easy way to workout with friends.",
   mainNav: [
     {
       title: "Home",
@@ -21,4 +20,6 @@ export const siteConfig = {
   links: {
     meeting: "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
   },
+  backend: "http://localhost:8080",
+  app: "https://b8f5-142-103-203-209.ngrok-free.app"
 }

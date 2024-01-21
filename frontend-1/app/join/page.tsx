@@ -13,28 +13,12 @@ import {
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { useState } from "react"
-import { navigate } from "./redirect"
 import { siteConfig } from "@/config/site"
 
-export default function CreateAccount() {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const createAccount = async (e) => {
-    e.target.disabled = true;
-    const response = await fetch(`${siteConfig.backend}/signup`, {
-      headers: {
-        'content-type': 'application/json'
-      },
-      body: JSON.stringify({ username, password }),
-      method: 'POST'
-    });
-    if (response.ok) {
-      const { token } = await response.json();
-      localStorage.setItem('token', token);
-      navigate('/');
-    } else {
-      e.target.disabled = false;
-    }
+export default function Join() {
+  const [code, setCode] = useState('');
+  const joinRoom = (e) => {
+    window.location.replace(`${siteConfig.app}/room.html?room=${code}`);
   };
   return (
     <div className="items-start justify-center gap-6 rounded-lg p-8 md:grid">
@@ -68,16 +52,12 @@ export default function CreateAccount() {
               </div>
             </div> */}
             <div className="grid gap-2">
-              <Label htmlFor="email">Username</Label>
-              <Input id="email" type="text" placeholder="Username" onInput={ e => setUsername(e.target.value) } />
-            </div>
-            <div className="grid gap-2">
-              <Label htmlFor="password">Password</Label>
-              <Input id="password" type="password" onInput={ e => setPassword(e.target.value) } />
+              <Label htmlFor="email">Room Code</Label>
+              <Input id="email" type="text" placeholder="Room Code" onInput={ e => setCode(e.target.value) } />
             </div>
           </CardContent>
           <CardFooter>
-            <Button className="w-full" onClick={ e => createAccount(e) }>Create account</Button>
+            <Button className="w-full" onClick={ e => joinRoom(e) }>Join Room</Button>
           </CardFooter>
         </Card>
       </div>

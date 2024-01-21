@@ -5,8 +5,18 @@ import Link from "next/link"
 import { siteConfig } from "@/config/site"
 import { buttonVariants } from "@/components/ui/button"
 import { Separator } from "@/components/ui/separator"
+import { Input } from "@/components/ui/input"
+
 
 export default function IndexPage() {
+  const generateRandomRoom = () => {
+    return `${siteConfig.app}/room.html?room=${
+      'xxyxyxxyx'.replace(/[xy]/g, function (c) {
+        var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+        return v.toString(16);
+      })
+    }`
+  };
   return (
     <section className="container grid items-center gap-6 pb-8 pt-5 md:py-10">
       <div className="flex max-w-[980px] flex-col items-start gap-2">
@@ -22,29 +32,20 @@ export default function IndexPage() {
           WiiGym is an application. It is one of the applications of all time.
         </p> 
       </div>
-      <div className="">
-        <Link
-        href={siteConfig.links.meeting}
-        className={buttonVariants()}>
-          Click here to get the meeting link!
-        </Link>
-      </div>
       <div className="flex gap-4">
         <Link
-          href="https://github.com"
-          target="_blank"
+          href={generateRandomRoom()}
           rel="noreferrer"
           className={buttonVariants()}
         >
-          Documentation
+          Create Room
         </Link>
         <Link
-          target="_blank"
           rel="noreferrer"
-          href="https://github.com"
+          href="/join"
           className={buttonVariants({ variant: "outline" })}
         >
-          GitHub
+          Join Room
         </Link>
       </div>
     </section>
