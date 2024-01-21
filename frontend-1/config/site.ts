@@ -15,11 +15,15 @@ export const siteConfig = {
     {
       title: "Sign Up",
       href: "/signup",
+    },
+    {
+      title: "Leaderboard",
+      href: "/leaderboard",
     }
   ],
   links: {
     meeting: "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
   },
   backend: "http://localhost:8080",
-  app: "https://b8f5-142-103-203-209.ngrok-free.app"
+  app: "https://c08d-142-103-203-209.ngrok-free.app/"
 }
