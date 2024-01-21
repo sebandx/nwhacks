@@ -728,7 +728,7 @@ socket.on('action', (msg, sid) => {
 
 
 cutCall.addEventListener('click', () => {
-    window.location.replace('http://localhost:3000')
+    window.location.replace('http://localhost:3000/leaderboard')
 })
 
 
