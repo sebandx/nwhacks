@@ -1,10 +1,10 @@
 const socket = io();
-// myvideo is const myvideo = document.querySelector("#vd1");
 
 const myvideo = document.querySelector("#vd1");
 const roomid = params.get("room");
 let username;
 let counter = 0;
+let accuracyScore = 0;
 const chatRoom = document.querySelector('.chat-cont');
 const sendButton = document.querySelector('.chat-send');
 const messageField = document.querySelector('.chat-input');
@@ -16,7 +16,6 @@ const videoButt = document.querySelector('.novideo');
 const audioButt = document.querySelector('.audio');
 const cutCall = document.querySelector('.cutcall');
 const startRepsButt = document.querySelector('.startrep');
-//whiteboard js start
 
 let videoAllowed = 1;
 let audioAllowed = 1;
@@ -116,20 +115,26 @@ predictWebcam = function () {
       }
       canvasCtx.restore();
       
-      if (startedRep === 1 && result.landmarks[0] && result.landmarks[0].length >= 16) {
-        const shoulder = [result.landmarks[0][11].x, result.landmarks[0][11].y];
-        const elbow = [result.landmarks[0][13].x, result.landmarks[0][13].y];
-        const wrist = [result.landmarks[0][15].x, result.landmarks[0][15].y];
+      if (startedRep === 1 && result.landmarks[0] && result.landmarks[0].length >= 32) {
+        const leftShoulder = [result.landmarks[0][11].x, result.landmarks[0][11].y];
+        const leftElbow = [result.landmarks[0][13].x, result.landmarks[0][13].y];
+        const leftWrist = [result.landmarks[0][15].x, result.landmarks[0][15].y];
         
-        let angle = calculateAngle(shoulder, elbow, wrist);
+        let leftAngle = calculateAngle(leftShoulder, leftElbow, leftWrist);
 
-        if (angle > 160) {
+        const rightShoulder = [result.landmarks[0][12].x, result.landmarks[0][12].y];
+        const rightElbow = [result.landmarks[0][14].x, result.landmarks[0][14].y];
+        const rightWrist = [result.landmarks[0][16].x, result.landmarks[0][16].y];
+
+        let rightAngle = calculateAngle(rightShoulder, rightElbow, rightWrist);
+        if (leftAngle < 100 && rightAngle < 100) {
           stage = "down";
         } 
-        if (angle < 30 && stage == "down") {
+        if (leftAngle > 170 && rightAngle > 170 && stage == "down") {
           stage = "up";
           counter += 1;
           console.log(counter);
+          document.getElementById("counterDisplay").textContent = counter;
         }
       }
       

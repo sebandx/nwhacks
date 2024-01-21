@@ -816,3 +816,8 @@ navbar .logo {
   left: 0;
 }
 
+#counterDisplay {
+  font-size: 24px;
+  color: blue;
+  /* Add more styles as needed */
+}
