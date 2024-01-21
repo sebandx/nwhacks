@@ -732,7 +732,7 @@ socket.on('action', (msg, sid) => {
 
 
 cutCall.addEventListener('click', () => {
-    location.href = '/';
+    window.location.replace('http://localhost:3001')
 })
 
 
