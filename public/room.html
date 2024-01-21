@@ -15,7 +15,6 @@
     <link href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css" rel="stylesheet">
     <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
     <script src="vision_bundle.js" crossorigin="anonymous"></script>
-     <!-- Why does it break when you try to import mediapipe? -->
 
     <script>
         const params = new URLSearchParams(location.search);
@@ -53,6 +52,7 @@
 
 
             <div class="footer">
+                <div id="counterDisplay">0</div>
                 <div class="utils">
 
                     <div class="audio">
@@ -65,8 +65,6 @@
                         <i class="fas fa-phone-slash"></i>
                         <span class="tooltiptext">Leave Call</span>
                     </div>
-
-
                 </div>
                 <div class="copycode-cont">
                     <div class="roomcode"></div>
