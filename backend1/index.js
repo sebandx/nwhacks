@@ -8,12 +8,7 @@ const mongoDBURL = "mongodb+srv://enkailiu1:IZFcooRhr1y3up3M@cluster0.5vaq3e0.mo
 const app = express();
 app.use(express.json()); 
 
-const corsOptions = {
-    origin: '*', 
-    optionsSuccessStatus: 200 
-};
-
-app.use(cors(corsOptions)); 
+app.use(cors())
 
 app.get('/', (request, response) => {
     console.log(request);
