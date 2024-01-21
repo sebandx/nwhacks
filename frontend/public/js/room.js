@@ -138,6 +138,8 @@ predictWebcam = function () {
           stage = "up";
           counter += 1;
           console.log(counter);
+          document.getElementById("counterDisplay").textContent = counter;
+
         }
       }
       
