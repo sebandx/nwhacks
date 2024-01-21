@@ -5,7 +5,6 @@ const myvideo = document.querySelector("#vd1");
 const roomid = params.get("room");
 let username;
 let counter = 0;
-let accuracyScore = 0;
 const chatRoom = document.querySelector('.chat-cont');
 const sendButton = document.querySelector('.chat-send');
 const messageField = document.querySelector('.chat-input');
@@ -130,7 +129,7 @@ predictWebcam = function () {
         const wristLeft = [result.landmarks[0][16].x, result.landmarks[0][16].y];
         
         let angleLeft = calculateAngle(shoulderLeft, elbowLeft, wristLeft);
-
+        
         if (angleRight < 110 && angleLeft < 110 ) {
           stage = "down";
         } 
@@ -155,6 +154,7 @@ predictWebcam = function () {
 
 }
 });
+
 
 
 
