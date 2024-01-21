@@ -20,13 +20,13 @@ export default function IndexPage() {
   return (
     <section className="container grid items-center gap-6 pb-8 pt-5 md:py-10">
       <div className="flex max-w-[980px] flex-col items-start gap-2">
-        <p className="max-w-[700px] text-lg text-muted-foreground">
-            Sun Tzu once said... 
-          </p>
-        <h1 className="text-3xl font-extrabold leading-tight tracking-tighter md:text-4xl">
-            "Excercise? More like
-            Extra Fries!"
-        </h1>
+      <p className="max-w-[700px] text-lg text-muted-foreground">
+          Sun Tzu once said... 
+        </p>
+      <h1 className="text-3xl font-extrabold leading-tight tracking-tighter md:text-4xl">
+          "Exercise? More like
+          Extra Fries!""
+      </h1>
         <p className="max-w-[700px] text-lg text-muted-foreground">
         WiiGym offers an easy way to workout with friends. Simply invite your friends, and start exercising! 
         WiiGym will take in your exercising statistics and provide them on a leaderboard with others.
