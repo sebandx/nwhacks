@@ -1,5 +1,4 @@
 import mongoose from 'mongoose'
-import User from './models/user.js'
 import userRoute from './routes/userRoute.js';
 const PORT = 5555;
 const mongoDBURL = "mongodb+srv://enkailiu1:IZFcooRhr1y3up3M@cluster0.5vaq3e0.mongodb.net/?retryWrites=true&w=majority";
