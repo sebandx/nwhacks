@@ -9,7 +9,7 @@ export default function Profiles({ Leaderboard }) {
             <img src={`https://api.dicebear.com/7.x/fun-emoji/svg?seed=${value.username}`} alt={`${value.username}'s avatar`} />
 
             <div className="info">
-              <h3 className='name text-dark'>{value.username}</h3>
+              <h3 className='name'>{value.username}</h3>
             </div>
           </div>
           <div className="item">
