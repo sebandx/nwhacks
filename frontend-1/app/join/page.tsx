@@ -25,9 +25,9 @@ export default function Join() {
       <div className="col-span-2 grid items-start gap-6 lg:col-span-1">
         <Card>
           <CardHeader className="space-y-1">
-            <CardTitle className="text-2xl">Create an account</CardTitle>
+            <CardTitle className="text-2xl">Join Room</CardTitle>
             <CardDescription>
-              Enter your email below to create your account
+              Enter your room code
             </CardDescription>
           </CardHeader>
           <CardContent className="grid gap-4">
