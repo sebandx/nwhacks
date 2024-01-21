@@ -8,15 +8,27 @@ import { SiteHeader } from "@/components/site-header"
 import { TailwindIndicator } from "@/components/tailwind-indicator"
 import { ThemeProvider } from "@/components/theme-provider"
 import { Input } from "@/components/ui/input"
+import { Icons } from "@/components/icons"
+import { Button } from "@/components/ui/button"
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card"
+import { Label } from "@/components/ui/label"
 
-//import SignIn from './layout'; // Import the SignIn component
-
-const App: React.FC = () => {
-    return (
-        <div className="App">
-            <Input />
-        </div>
-    );
+export default function LoginAccount()
+{
+    return(
+        <Card>
+            <CardHeader>
+                <CardTitle>
+                    Login
+                </CardTitle>
+            </CardHeader>
+        </Card>
+    )
 }
-
-export default App;
