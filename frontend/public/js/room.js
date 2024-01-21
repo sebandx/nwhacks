@@ -80,11 +80,8 @@ const createPoseLandmarker = async () => {
     numPoses: 2
 
   });
-  console.log("hi");
-  console.log(poseLandmarker);
 };
 
-console.log("pose landmarker #2");
 createPoseLandmarker();
 
 // function
@@ -100,7 +97,6 @@ const drawingUtils = new DrawingUtils(canvasCtx);
 let lastVideoTime = -1;
 let stage = null;
 predictWebcam = function () {
-    console.log("reached");
   canvasElement.style.height = videoHeight;
   myvideo.style.height = videoHeight;
   canvasElement.style.width = videoWidth;
@@ -599,9 +595,6 @@ videoButt.addEventListener('click', () => {
 })
 
 myvideo.onplay = () => {
-    console.log("before if");
-    console.log(videoAllowed);
-    console.log(poseLandmarker);
     // just turn this into the video is one variable 
     if (videoAllowed === 1 && poseLandmarker) {
         console.log("inside if");
@@ -670,12 +663,10 @@ startRepsButt.addEventListener('click', async () => { // Add async here
         startedRep = 0;
         startRepsButt.innerHTML = `<i class="fas fa-play"></i>`;
         startRepsButt.style.backgroundColor = "#4ECCA3";
-        console.log(username);
-        console.log(counter);
         const data = { username: username, numReps: counter };
         
         try {
-            const response = await fetch('http://localhost:5555/User/', { // Use await here
+            const response = await fetch('http://localhost:5555/User/', { 
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
