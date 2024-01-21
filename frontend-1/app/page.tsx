@@ -29,7 +29,8 @@ export default function IndexPage() {
       </h1>
         <Separator />
         <p className="max-w-[700px] text-lg text-muted-foreground">
-          WiiGym is an application. It is one of the applications of all time.
+        WiiGym offers an easy way to workout with friends. Simply invite your friends, and start exercising! 
+        WiiGym will take in your exercising statistics and provide them on a leaderboard with others.
         </p> 
       </div>
       <div className="flex gap-4">
