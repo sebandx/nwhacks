@@ -19,6 +19,10 @@ export const siteConfig = {
     {
       title: "Leaderboard",
       href: "/leaderboard",
+    },
+    {
+      title: "Stats",
+      href: "/stats",
     }
   ],
   links: {
