@@ -5,6 +5,7 @@ const myvideo = document.querySelector("#vd1");
 const roomid = params.get("room");
 let username;
 let counter = 0;
+let accuracyScore = 0;
 const chatRoom = document.querySelector('.chat-cont');
 const sendButton = document.querySelector('.chat-send');
 const messageField = document.querySelector('.chat-input');

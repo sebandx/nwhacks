@@ -1,44 +1,36 @@
 'use client'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react';
 import Profiles from './profiles';
-import { getLeaderboards, Leaderboard } from './database';
+import { getLeaderboards } from './database';
 
 export default function Board() {
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true); // State to handle loading status
+  
+  useEffect(() => {
+    (async () => {
+      const data1 = await getLeaderboards();
+      setData(data1);
+      setLoading(false); // Set loading to false once data is fetched
+    })(); // Immediately invoke the async function
+  }, []);
+
   const [period, setPeriod] = useState(0);
 
   const handleClick = (e) => {
-    setPeriod(e.target.dataset.id)
+    setPeriod(e.target.dataset.id);
+  }
+
+  if (loading) {
+    return <div>Loading...</div>; // Render loading state
   }
 
   return (
     <div className="board">
       <h1 className='leaderboard'>Leaderboard</h1>
-      <button style={{ marginTop: '2.5em', fontweight: '50em' }} className='mt-10 text-3xl font-extrabold leading-tight' disabled data-id=''>Leaderboard</button>
+      <button style={{ marginTop: '2.5em', fontWeight: '500' }} className='mt-10 text-3xl font-extrabold leading-tight' disabled data-id=''>Leaderboard</button>
 
-      <Profiles Leaderboard={between(Leaderboard, period)}></Profiles>
+      <Profiles Leaderboard={[...data].reverse()}></Profiles>
     </div>
   )
-}
-
-
-
-function between(data, between){
-  const today = new Date();
-  const previous = new Date(today);
-  previous.setDate(previous.getDate() - (between + 1));
-
-  let filter = data.filter(val => {
-    let userDate = new Date(val.dt);
-    if (between == 0) return val;
-    return previous <= userDate && today >= userDate;
-  })
-
-  // sort with asending order
-  return filter.sort((a, b) => {
-    if ( a.score === b.score){
-      return b.score - a.score;
-    } else{
-      return b.score - a.score;
-    }
-  })
 }
