@@ -1,8 +1,8 @@
 import express from 'express';
 import { MongoClient } from 'mongodb';
 
-const url = process.env['URL'];
-const dbName = process.env['DB_NAME'];
+const url = 'mongodb+srv://ewanbuchanan8:Mycomputer437!@cluster0.csowqot.mongodb.net/';
+const dbName = 'nwhack2024';
 
 const client = new MongoClient(url);
 await client.connect();
